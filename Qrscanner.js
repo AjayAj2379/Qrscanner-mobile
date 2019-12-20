@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import {View,Text,Button,StyleSheet,Dimensions} from 'react-native'
+import {View,Text,Button,StyleSheet,Dimensions,ScrollView} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 
@@ -15,8 +15,8 @@ class Qrcode extends React.Component{
       
        
         this.state = {
-            scan: true,
-             ScanResult: false,
+            scan: false,
+             ScanResult: true,
             result: null,
             heights:Math.round (Dimensions.get('window').height),
                     
@@ -98,10 +98,30 @@ class Qrcode extends React.Component{
                         </View>}
 
                         {ScanResult && 
-                        <View style={styles.container} >
-                            <Text>Rc Number : {result}</Text>
-                        </View>
+                        
+                        <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
+                        <Text>aja</Text>
+                        <Text  style={{fontWeight:'bold',fontSize:22,marginBottom:10}}>Rc Number :  14{result}</Text>
+                        <Text  style={{fontWeight:'bold',fontSize:22}}>Rc Number :  14{result}</Text>
+                        <Text  style={{fontWeight:'bold',fontSize:22}}>Rc Number :  14{result}</Text>
+                        <Text  style={{fontWeight:'bold',fontSize:22}}>Rc Number :  14{result}</Text>
+                        <Text  style={{fontWeight:'bold',fontSize:22}}>Rc Number :  14{result}</Text>
 
+                        
+                        <View style={{flexDirection:"row"}} >
+                        <View>
+                        <Button title="MOne to"/>
+                        </View>
+                        <View style={{marginLeft:20}}>
+                        <Button title="MOne to"/>
+                        </View>
+                      
+                      
+                        </View>
+                        </ScrollView>
+                            
+                      
+ 
                         }
 
                       

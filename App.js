@@ -131,8 +131,11 @@ class App extends React.Component{
 
     return(
         
-        
-  <Qrcode></Qrcode>
+        <View style={{flex:1}}>
+         <Qrcode></Qrcode>
+
+        </View>
+ 
 
       
     
