@@ -26,7 +26,6 @@ class Qrcode extends React.Component{
     
     componentDidMount(){
 
-        firebase.firestore().collection('food').add({name:'ajay'}).then(()=>{console.log('succs')})
         
         console.log("cdm");
         console.log(Dimensions.get('window').height)
@@ -100,7 +99,7 @@ class Qrcode extends React.Component{
 
                         {ScanResult && 
                         <View style={styles.container} >
-                      <Text>{result}</Text>
+                            <Text>Rc Number : {result}</Text>
                         </View>
 
                         }
