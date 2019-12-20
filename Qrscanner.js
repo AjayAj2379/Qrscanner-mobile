@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {View,Text,Button,StyleSheet,Dimensions} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import firebase from 'react-native-firebase'
+
 
 
 
