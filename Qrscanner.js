@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {View,Text,Button,StyleSheet,Dimensions,ScrollView} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import firebase from './firebase/config';
 
 
 
@@ -26,6 +27,22 @@ class Qrcode extends React.Component{
     
     componentDidMount(){
 
+            firebase.firestore().collection('ah').onSnapshot((query)=>{
+        const list=[];
+      
+        query.forEach(doc=>{
+          const {title,complete} = doc.data();
+          list.push({
+            id:doc.id,
+            title,
+            complete
+          });
+          console.log(doc)
+          console.log(doc.data().name)
+        });
+      
+        console.log(list)
+      })
         
         console.log("cdm");
         console.log(Dimensions.get('window').height)
@@ -57,6 +74,24 @@ class Qrcode extends React.Component{
       
     }
 
+
+    // firebase.firestore().collection('ah').onSnapshot((query)=>{
+    //     const list=[];
+      
+    //     query.forEach(doc=>{
+    //       const {title,complete} = doc.data();
+    //       list.push({
+    //         id:doc.id,
+    //         title,
+    //         complete
+    //       });
+    //       console.log(doc)
+    //       console.log(doc.data().name)
+    //     });
+      
+    //     console.log(list)
+    //   })
+  
     render(){
         const { scan, ScanResult, result,heights  } = this.state
         return(
@@ -66,30 +101,25 @@ class Qrcode extends React.Component{
 
                    {scan &&
                    <View style={styles.container}>
-                    <View style={{marginTop:heights-(heights- (heights)*10/100), borderColor:'transparent',borderWidth:1 }}>
-                   <Text style={styles.textContainer}>QR code Scanner</Text>
+                    <View style={{marginTop:heights-(heights- (heights)*10/100), 
+                    borderColor:'transparent',
+                    borderWidth:1,
+                    elevation:5,
+                    backgroundColor:'#AFEEEF',
+                    padding:10 }}>
+                   <Text style={styles.textContainer}>QR CODE SCANNER</Text>
                    </View>
                    <View style={{flex:1}}>
                     <QRCodeScanner
                    
                     topViewStyle={{marginBottom:10}}
-                    cameraStyle={{height: heights>500?"65%":"85%"  , width: heights>500?"60%":"35%", alignSelf: 'center', justifyContent: 'center',}}
+                    cameraStyle={{height: heights>500?"75%":"85%"  , width: heights>500?"70%":"35%", alignSelf: 'center', justifyContent: 'center',}}
                             reactivate={true}
                             showMarker={false}
                            
                             ref={(node) => { this.scanner = node }}
                             onRead={this.onSuccess}
-                            topContent={
-                                <View>
-                                     <Text style={{fontWeight:"bold"}}>
-
-                                Place the Qrcode with in the Squares
-                                    </Text>
-                                    <Icon name="error" size={20}></Icon>
-
-                                </View>
-                               
-                            }
+                           
                            
                            
                         
@@ -142,7 +172,10 @@ const styles =StyleSheet.create({
     },
     textContainer:{
         fontWeight:"bold",
-        fontSize:30
+        fontSize:30,
+        fontStyle:'italic',
+     
+        
     },
    
     rectangleContainer: {
