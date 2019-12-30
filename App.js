@@ -19,14 +19,40 @@ import {
 const AppContainer = createMaterialBottomTabNavigator({
 
     Qr:{
-        screen:Qrcode
+        screen:Qrcode,
+        navigationOptions:{
+            tabBarLabel:'QR-Scan',
+            tabBarIcon: ({tintcolor}) =>(
+
+                <View>
+                    <Icon name='aspect-ratio' style={[{color:'white',fontSize:16}]} color='white'></Icon>
+                </View>
+            ),
+            activeColor: '#ffffff',
+             inactiveColor: '#ebaabd',
+            barStyle: { backgroundColor: '#663399' },
+           
+        }
     },
-    Details:Details
+    Details:{
+
+        screen:Details,
+        navigationOptions:{
+
+            tabBarIcon: ({tintcolor}) =>(
+
+                <View>
+                    <Icon name='info' style={[{color:'white',fontSize:16}]} color='white'></Icon>
+                </View>
+            )
+            
+        }
+    }
 },{
     initialRouteName: 'Qr',
-    activeColor: '#f0edf6',
-    inactiveColor: '#3e2465',
-    barStyle: { backgroundColor: '#694fad' },
+    activeColor: '#ffffff',
+    inactiveColor: '#bda1f7',
+    barStyle: { backgroundColor: '#7B68EE' },
 })
 
 const Navigator = createAppContainer(AppContainer)
